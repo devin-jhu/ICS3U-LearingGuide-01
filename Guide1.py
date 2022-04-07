@@ -9,23 +9,37 @@ import ugame
 
 
 def game_scene():
+    #this function is a main game scene
 
-    image bank background = stage.Bank. from bmp16("space aliens_background.bmp")
+    #image banks for CircuitPython
+    image_bank_background = stage.Bank.from_bmp16 ("space_aliens_background.bmp")
+    image_bank_sprites = stage.Bank.from_bmp16 ("space_aliens.bmp")
 
+    # set the background to image 0 in the image bank
+    # and the size (10x8 tiles of size 16x16)
     background = stage.Grid(image_bank_background, 10, 8)
 
+    # a sprite that will be updated every frame
+    ship = stage.Sprite(image_bank_sprites, 5, 75, 66)
+
     # create a stage for the background to show up on
+    # and set the frame rate to 60fps
     game = stage.Stage(ugame.display, 60)
-    # set the Layers of all sprites,
-    items show up in order
-    game.layers = [background]
+    # set the Layers of all sprites, items show up in order
+    game.layers = [ship] + [background]
     # render all sprites
-    # most Likely you will only render the background once per game scene
+    # most likely you will only render the background once per game scene
     game.render_block()
-    
+
+    # repeat forever, game Loop
     while True:
-        pass #repeat forever
-    
+        # get user 
+
+        # update game Logic
+
+        # redraw Sprite
+        game.render_sprites([ship])
+        game.tick() # wait until refresh rate finishes
 
 
 if __name__ == "__main__":
