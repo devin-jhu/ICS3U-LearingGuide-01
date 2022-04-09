@@ -9,11 +9,11 @@ import ugame
 
 
 def game_scene():
-    #this function is a main game scene
+    # this function is a main game scene
 
-    #image banks for CircuitPython
-    image_bank_background = stage.Bank.from_bmp16 ("space_aliens_background.bmp")
-    image_bank_sprites = stage.Bank.from_bmp16 ("space_aliens.bmp")
+    # image banks for CircuitPython
+    image_bank_background = stage.Bank.from_bmp16("space_aliens_background.bmp")
+    image_bank_sprites = stage.Bank.from_bmp16("space_aliens.bmp")
 
     # set the background to image 0 in the image bank
     # and the size (10x8 tiles of size 16x16)
@@ -33,13 +33,31 @@ def game_scene():
 
     # repeat forever, game Loop
     while True:
-        # get user 
+        # get user input
+        keys = ugame.buttons.get_pressed()
+
+        if keys & ugame.K_X:
+            print("A")
+        if keys & ugame.K_O:
+            print("B")
+        if keys & ugame.K_START:
+            print("Start")
+        if keys & ugame.K_SELECT:
+            print("Select")
+        if keys & ugame.K_RIGHT:
+            ship.move(ship.x + 1, ship.y)
+        if keys & ugame.K_LEFT:
+            ship.move(ship.x - 1, ship.y)
+        if keys & ugame.K_UP:
+            ship.move(ship.x, ship.y - 1)
+        if keys & ugame.K_DOWN:
+            ship.move(ship.x, ship.y + 1)
 
         # update game Logic
 
         # redraw Sprite
         game.render_sprites([ship])
-        game.tick() # wait until refresh rate finishes
+        game.tick()  # wait until refresh rate finishes
 
 
 if __name__ == "__main__":
