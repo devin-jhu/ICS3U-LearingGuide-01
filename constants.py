@@ -4,7 +4,7 @@
 # Created on April 2022
 # The space aliens game
 
-#PyBadge screen size is 160x128 and sprites are 16x16
+# PyBadge screen size is 160x128 and sprites are 16x16
 SCREEN_X = 160
 SCREEN_Y = 128
 SCREEN_GRID_X = 10
